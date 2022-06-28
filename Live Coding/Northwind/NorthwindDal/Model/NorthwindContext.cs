@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace NorthwindDal.Model
 {
+    // Scaffold-DbContext -Connection "Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=northwind;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False" -Provider Microsoft.EntityFrameworkCore.SqlServer -OutputDir Model -Context NorthwindContext -Tables Customers, Orders, "Order Details", Products -DataAnnotations
+
     public partial class NorthwindContext : DbContext
     {
         public NorthwindContext()

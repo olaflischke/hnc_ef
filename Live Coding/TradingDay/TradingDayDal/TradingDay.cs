@@ -10,20 +10,29 @@ namespace TradingDayDal
 {
     public class TradingDay
     {
+        public TradingDay()
+        {
+
+        }
+
         public TradingDay(XElement tradingDayNode)
         {
-            this.Date = DateOnly.Parse(tradingDayNode.Attribute("time").Value);
+            this.Date = Convert.ToDateTime(tradingDayNode.Attribute("time").Value); // DateOnly.Parse(tradingDayNode.Attribute("time").Value);
 
-            this.ExchangeRates = tradingDayNode.Elements()
-                                            .Select(el => new ExchangeRate()
+            this.Currencies = tradingDayNode.Elements()
+                                            .Select(el => new Currency()
                                             {
                                                 Symbol = el.Attribute("currency").Value,
-                                                Rate = Convert.ToDouble(el.Attribute("rate").Value, CultureInfo.InvariantCulture)
+                                                Rate = Convert.ToDouble(el.Attribute("rate").Value, CultureInfo.InvariantCulture),
+                                                TradingDay = this
                                             })
                                             .ToList();
         }
 
-        public DateOnly Date { get; set; }
-        public List<ExchangeRate> ExchangeRates { get; set; } = new();
+        public DateTime Date { get; set; }
+        public List<Currency> Currencies { get; set; } = new();
+        public string TradingLocation { get; set; }
+
+        public int Id { get; set; }
     }
 }

@@ -18,7 +18,7 @@ namespace TradingDayDalUnitTests
         {
             Archive archive=new Archive(url);
 
-            Console.WriteLine($"USD vom {archive.TradingDays?.FirstOrDefault()?.Date:dd.MM.yy}: {archive.TradingDays?.FirstOrDefault()?.ExchangeRates?.Where(er => er.Symbol == "USD").FirstOrDefault()?.Rate}");
+            Console.WriteLine($"USD vom {archive.TradingDays?.FirstOrDefault()?.Date:dd.MM.yy}: {archive.TradingDays?.FirstOrDefault()?.Currencies?.Where(er => er.Symbol == "USD").FirstOrDefault()?.Rate}");
 
             Assert.AreEqual(62, archive.TradingDays.Count);
         }
